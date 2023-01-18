@@ -1,0 +1,25 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+Dinocountry=table(data$lived_in)
+prop.table(Dinocountry)
+propT=prop.table(Dinocountry)*100
+pie(Dinocountry)
+(tableFreq=as.data.frame(Dinocountry))
+names(tableFreq)=c("Country","Count")
+tableFreq$Percent=as.vector(Dinocountry)
+tableFreq
+library(ggplot2)
+base= ggplot(data=tableFreq,
+             aes(x=Country,
+                 y=Count)) 
+plot1=base+geom_bar(stat='identity')+theme(axis.text.x = element_text(angle = 90))
+titleText='Where were the Dinosaurs?'
+plot2=plot1 + labs(title=titleText)
+plot2
+
+
+```
